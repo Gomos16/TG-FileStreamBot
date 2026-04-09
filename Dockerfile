@@ -1,7 +1,7 @@
 FROM golang:1.24-alpine AS builder
 WORKDIR /app
 COPY . .
-RUN go build -o fsb ./cmd/fsb
+RUN go mod tidy && go build -o fsb ./cmd/fsb
 
 FROM alpine:latest
 WORKDIR /app
