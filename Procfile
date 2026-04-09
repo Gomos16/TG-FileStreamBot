@@ -1,1 +1,1 @@
-web: fsb run
+web: python3 -m tgfilestream
