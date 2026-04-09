@@ -1,7 +1,7 @@
-FROM golang:1.25rc1-alpine AS builder
+FROM golang:1.23-alpine AS builder
 WORKDIR /app
 COPY . .
-RUN go build -o fsb .
+RUN go build -o fsb ./cmd/fsb
 
 FROM alpine:latest
 WORKDIR /app
