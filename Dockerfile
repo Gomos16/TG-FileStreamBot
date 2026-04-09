@@ -1,5 +1,9 @@
-FROM python:3.10-slim
+FROM golang:1.20-alpine AS builder
 WORKDIR /app
 COPY . .
-RUN pip install -r requirements.txt
-CMD ["python3", "-m", "tgfilestream", "--host", "0.0.0.0"]
+RUN go build -o fsb .
+
+FROM alpine:latest
+WORKDIR /app
+COPY --from=builder /app/fsb .
+CMD ["./fsb", "run"]
